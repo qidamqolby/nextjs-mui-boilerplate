@@ -1,9 +1,23 @@
+'use client';
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 export default function Home() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api');
+      const result = await res.json();
+      setData(result.data);
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
   return (
     <Container maxWidth="lg">
       <Box
