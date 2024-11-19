@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-mui-boilerplate",
+  "name": "sukro-web-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,18 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
-  },
-  "engines": {
-    "node": "^18.18"
+    "prepare": "husky",
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
+    "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.1.6",
-    "@mui/material-nextjs": "^6.1.6",
-    "@next/bundle-analyzer": "^15.0.2",
-    "next": "14.2.16",
+    "@mui/material": "^6.1.7",
+    "@mui/material-nextjs": "^6.1.7",
+    "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -27,13 +26,24 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.16",
-    "husky": "^9.1.6",
+    "eslint-config-next": "14.2.8",
+    "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3",
+    "prettier": "3.3.3",
     "typescript": "^5"
   },
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "*.{js,ts,tsx}": [
+      "prettier --config .prettierrc --write",
+      "eslint --fix"
+    ]
   }
 }
